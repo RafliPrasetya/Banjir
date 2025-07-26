@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Menyusun konten secara vertikal di tengah */
+    align-items: flex-end;   /* Menyusun konten secara horizontal di sisi kanan */
+    height: 100vh;           /* Mengatur tinggi kontainer sesuai dengan tinggi viewport */
+    padding: 20px;
+}
+.fw-bold {
+    font-weight: bold;
+}
+.fw-light {
+    font-weight: bold;
+}
