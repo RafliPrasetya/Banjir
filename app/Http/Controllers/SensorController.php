@@ -45,7 +45,7 @@ class SensorController extends Controller
 
         return response()->json([
             'message' => 'Data sensor berhasil disimpan',
-            // 'data' => $sensor
+            'data' => $sensor
         ], 200);
     }
 

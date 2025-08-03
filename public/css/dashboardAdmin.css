@@ -1,0 +1,296 @@
+:root {
+    --primary: #0d6efd;
+    --danger: #dc3545;
+    --warning: #ffc107;
+    --success: #28a745;
+    --info: #17a2b8;
+    --light-bg: #f8f9fa;
+    --card-bg: #ffffff;
+    --text-muted: #6c757d;
+
+    --primary: #0d6efd;
+    --danger: #dc3545;
+    --info: #17a2b8;
+    --gray-light: #f8f9fa;
+    --gray-dark: #343a40;
+    --card-bg: #ffffff;
+    --card-radius: 16px;
+    --shadow-soft: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+body {
+    background-color: var(--light-bg);
+    background-color: var(--gray-light);
+    font-family: 'Poppins', sans-serif;
+    /* font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; */
+}
+
+.container h2 {
+    font-weight: 700;
+    font-size: 1.6rem;
+    color: var(--gray-dark);
+}
+
+/* Dropdown Kecamatan */
+#kecamatan {
+    font-size: 1rem;
+    padding: 10px 14px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    box-shadow: var(--shadow-soft);
+    background-color: white;
+}
+
+/* Kartu Sensor */
+.card-monitor {
+    width: 280px;
+    background-color: var(--card-bg);
+    border-radius: var(--card-radius);
+    box-shadow: var(--shadow-soft);
+    padding: 1.5rem;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-align: center;
+}
+
+.card-monitor:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card-monitor img {
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+}
+
+.card-monitor h5 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 0.4rem;
+    color: #555;
+}
+
+.card-monitor h2 {
+    font-size: 2rem;
+    margin-bottom: 0.4rem;
+}
+
+.card-monitor p.tanggal {
+    font-size: 0.85rem;
+    color: #6c757d;
+}
+
+/* Responsive Grid */
+@media (max-width: 768px) {
+    .card-monitor {
+        width: 100%;
+    }
+}
+
+/* ===== Status Notification ===== */
+.status-info {
+    padding: 16px 24px;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 1.2rem;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 25px;
+}
+
+.status-icon {
+    font-size: 1.8rem;
+}
+
+.status-aman {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.status-waspada {
+    background-color: #fff3cd;
+    color: #856404;
+    animation: blink 1s infinite;
+}
+
+.status-bahaya {
+    background-color: #f8d7da;
+    color: #721c24;
+    animation: blink-fast 0.6s infinite;
+}
+
+@keyframes blink {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.5;
+    }
+}
+
+@keyframes blink-fast {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.3;
+    }
+}
+
+/* ===== Monitoring Cards ===== */
+.card-monitor {
+    width: 280px;
+    border-radius: 15px;
+    background-color: var(--card-bg);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease;
+}
+
+.card-monitor:hover {
+    transform: translateY(-3px) scale(1.02);
+}
+
+.card-monitor h2 {
+    font-size: 2rem;
+}
+
+.card-monitor img {
+    width: 70px;
+    margin-bottom: 10px;
+}
+
+/* ===== Input Style ===== */
+#kecamatan {
+    font-size: 1rem;
+    padding: 8px 12px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+/* ===== Card Global Styles ===== */
+.card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.card-body canvas {
+    width: 100% !important;
+    height: auto !important;
+}
+
+/* ===== Table ===== */
+.table {
+    font-size: 0.95rem;
+}
+
+.table th,
+.table td {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+.table th {
+    background-color: #e9ecef;
+    color: #343a40;
+}
+
+.table-fixed table {
+    width: 100%;
+    margin-bottom: 0;
+}
+
+.table-fixed th,
+.table-fixed td {
+    padding: 10px;
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+.table th,
+.table td {
+    padding: 10px 14px;
+    /* Tambah kenyamanan baca */
+    text-align: center;
+    border: 1px solid #dee2e6;
+    vertical-align: middle;
+}
+
+.table th {
+    background-color: #f8f9fa;
+    /* Warna header abu terang */
+    font-weight: 600;
+    color: #212529;
+}
+
+/* Tambahan agar angka rata tengah dan teks tanggal tetap rapi */
+.table td:nth-child(2) {
+    text-align: left;
+    white-space: nowrap;
+}
+
+.table-responsive {
+    overflow-x: auto;
+}
+
+/* ===== Equal Height Cards (Graph & Table) ===== */
+
+.equal-height {
+    min-height: 480px;
+    display: flex;
+    flex-direction: column;
+}
+
+.equal-height .card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#sensorChart {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+
+/* ===== Responsive Fixes ===== */
+@media (max-width: 768px) {
+    .card-monitor {
+        width: 100%;
+    }
+
+    .card-title {
+        font-size: 1rem;
+    }
+
+    .equal-height {
+        min-height: auto;
+    }
+}
+
+/* ===== Tabel Riwayat ===== */
+td.suhu-merah {
+    color: #dc3545 !important;
+    font-weight: bold;
+}
+
+td.suhu-kuning {
+    color: #fd7e14 !important;
+    font-weight: bold;
+}
+
+td.suhu-biru {
+    color: #0d6efd !important;
+    font-weight: bold;
+}
