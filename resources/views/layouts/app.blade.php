@@ -4,10 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Fonts & Styles -->
@@ -32,92 +29,123 @@
 
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm fixed-top" style="background: rgb(0, 0, 255);">
-            <div class="container position-relative d-flex align-items-center justify-content-between">
-                <!-- Logo Kiri -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ url('/image/logo3.png') }}" alt="Logo" width="60" />
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top"
+            style="background-color: rgb(0, 0, 255); padding: 0.75rem 0;">
+            <div class="container d-flex justify-content-between align-items-center">
+
+                <!-- Logo -->
+                <a class="navbar-brand me-4" href="{{ url('/') }}">
+                    <img src="{{ url('/image/logo3.png') }}" alt="Logo" width="50" />
                 </a>
 
-                <!-- Toggler Kanan -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent">
+                <!-- Toggle Button -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
                     <span class="navbar-toggler-icon"></span>
                 </button>
 
-                <!-- Menu Tengah -->
-                <div class="position-absolute top-50 start-50 translate-middle d-none d-md-block">
-                    <ul class="navbar-nav flex-row gap-4 fw-bold text-center">
+                <!-- Navbar Collapse -->
+                <div class="collapse navbar-collapse justify-content-center" id="mainNavbar">
+                    <!-- Menu Tengah -->
+                    <ul class="navbar-nav mx-auto text-center gap-3 fw-semibold">
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('home') ? 'active' : '' }}"
+                            <a class="nav-link text-white px-3 {{ request()->routeIs('home') ? 'active' : '' }}"
                                 href="{{ route('home') }}">Beranda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('monitoring.index') ? 'active' : '' }}"
+                            <a class="nav-link text-white px-3 {{ request()->routeIs('monitoring.index') ? 'active' : '' }}"
                                 href="{{ route('monitoring.index') }}">Monitoring</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('riwayat') ? 'active' : '' }}"
+                            <a class="nav-link text-white px-3 {{ request()->routeIs('riwayat') ? 'active' : '' }}"
                                 href="{{ route('riwayat') }}">Berita</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-white {{ request()->routeIs('notifikasi') ? 'active' : '' }}"
+                            <a class="nav-link text-white px-3 {{ request()->routeIs('notifikasi') ? 'active' : '' }}"
                                 href="{{ route('notifikasi') }}">Riwayat</a>
                         </li>
                         <li class="nav-item">
-                            @auth
-                                @if (Auth::user()->role === 'admin')
-                                    <a class="nav-link text-warning" href="{{ route('admin.dashboard') }}">Admin Panel</a>
-                                @endif
-                            @else
-                                <a class="nav-link text-warning" href="{{ route('login') }}">Admin Panel</a>
-                            @endauth
+                            <a class="nav-link text-white px-3 {{ request()->routeIs('pengaduan.index') ? 'active' : '' }}"
+                                href="{{ route('pengaduan.index') }}">Pengaduan</a>
                         </li>
                     </ul>
-                </div>
 
-                <!-- Collapse Menu (Mobile & Login/User Section) -->
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Menu Tengah untuk Mobile -->
-                    <ul class="navbar-nav fw-bold text-center d-md-none">
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('home') }}">Beranda</a></li>
-                        <li class="nav-item"><a class="nav-link text-white"
-                                href="{{ route('monitoring.index') }}">Monitoring</a></li>
-                        <li class="nav-item"><a class="nav-link text-white" href="{{ route('riwayat') }}">Berita</a>
-                        </li>
-                        <li class="nav-item"><a class="nav-link text-white"
-                                href="{{ route('notifikasi') }}">Riwayat</a></li>
-                    </ul>
-
-                    <!-- Login / User Menu -->
-                    <ul class="navbar-nav ms-auto text-center">
+                    <!-- User Menu: Mobile Only -->
+                    <ul class="navbar-nav text-center d-md-none mt-3">
                         @guest
                             @if (Route::has('login'))
-                                <li class="nav-item"><a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
                                 </li>
                             @endif
                             @if (Route::has('register'))
-                                <li class="nav-item"><a class="nav-link text-white"
-                                        href="{{ route('register') }}">Register</a></li>
+                                <li class="nav-item">
+                                    <a class="nav-link text-white" href="{{ route('register') }}">Register</a>
+                                </li>
                             @endif
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#"
+                                <a id="navbarDropdownMobile" class="nav-link dropdown-toggle text-white" href="#"
                                     role="button" data-bs-toggle="dropdown">
                                     {{ Auth::user()->name }}
                                 </a>
-                                <div class="dropdown-menu dropdown-menu-end">
+                                <ul class="dropdown-menu dropdown-menu-end">
+                                    @if (Auth::user()->role === 'admin')
+                                        <li><a class="dropdown-item text-warning"
+                                                href="{{ route('admin.dashboard') }}">Admin Panel</a></li>
+                                    @endif
+                                    <li>
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault(); document.getElementById('logout-form-mobile').submit();">
+                                            Logout
+                                        </a>
+                                        <form id="logout-form-mobile" action="{{ route('logout') }}" method="POST"
+                                            class="d-none">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endguest
+                    </ul>
+                </div>
+
+                <!-- User Menu: Desktop Only -->
+                <ul class="navbar-nav d-none d-md-flex align-items-center ms-auto">
+                    @guest
+                        @if (Route::has('login'))
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('login') }}">Login</a>
+                            </li>
+                        @endif
+                        @if (Route::has('register'))
+                            <li class="nav-item">
+                                <a class="nav-link text-white" href="{{ route('register') }}">Register</a>
+                            </li>
+                        @endif
+                    @else
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle text-white" href="#" role="button"
+                                data-bs-toggle="dropdown">
+                                {{ Auth::user()->name }}
+                            </a>
+                            <ul class="dropdown-menu dropdown-menu-end">
+                                @if (Auth::user()->role === 'admin')
+                                    <li><a class="dropdown-item text-warning" href="{{ route('admin.dashboard') }}">Admin
+                                            Panel</a></li>
+                                @endif
+                                <li>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf</form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
+                                        @csrf
+                                    </form>
+                                </li>
+                            </ul>
+                        </li>
+                    @endguest
+                </ul>
             </div>
         </nav>
 
@@ -125,7 +153,6 @@
             @yield('content')
         </main>
     </div>
-
 
     <footer class="footer">
         <div class="waves">
@@ -155,8 +182,6 @@
         <img src="{{ url('/image/logo3.png') }}" alt="image" width="80" />
     </footer>
 
-
-    {{-- Script stack for pages --}}
     @stack('scripts')
 </body>
 

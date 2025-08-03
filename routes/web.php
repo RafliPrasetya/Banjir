@@ -12,6 +12,7 @@ use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\BeritaController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\PengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,12 @@ Route::get('/riwayat', [RiwayatController::class, 'index'])->name('riwayat');
 Route::get('/riwayat2', [Riwayat2Controller::class, 'index'])->name('riwayat2');
 Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifikasi');
 Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
+// =============================
+// PENGADUAN
+// =============================
+Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan.index');
+Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+
 
 // ==========================
 // RUTE LOGIN (Hanya Admin)
