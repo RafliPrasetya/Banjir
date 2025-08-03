@@ -8,6 +8,7 @@ use App\Http\Controllers\Riwayat2Controller;
 use App\Http\Controllers\MonitoringController;
 use App\Http\Controllers\NotifikasiController;
 use App\Http\Controllers\BeritaController;
+use App\Http\Controllers\PengaduanController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,13 @@ Route::get('/notifikasi', [NotifikasiController::class, 'index'])->name('notifik
 // BERITA
 // =============================
 Route::get('/berita/{id}', [BeritaController::class, 'show'])->name('berita.show');
+
+// =============================
+// PENGADUAN
+// =============================
+Route::get('/pengaduan', [PengaduanController::class, 'index'])->name('pengaduan.index');
+Route::post('/pengaduan', [PengaduanController::class, 'store'])->name('pengaduan.store');
+
 
 // =============================
 // CATATAN:

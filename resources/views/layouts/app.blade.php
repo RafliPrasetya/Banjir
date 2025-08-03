@@ -58,6 +58,10 @@
                     <li class="nav-item">
                         <a class="nav-link text-white {{ request()->routeIs('notifikasi') ? 'active' : '' }}" href="{{ route('notifikasi') }}">Riwayat</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white {{ request()->routeIs('pengaduan.index') ? 'active' : '' }}" href="{{ route('pengaduan.index') }}">Pengaduan</a>
+                    </li>
+
                 </ul>
             </div>
 
@@ -69,6 +73,7 @@
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('monitoring.index') }}">Monitoring</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('riwayat') }}">Berita</a></li>
                     <li class="nav-item"><a class="nav-link text-white" href="{{ route('notifikasi') }}">Riwayat</a></li>
+                    <li class="nav-item"><a class="nav-link text-white" href="{{ route('pengaduan.index') }}">Pengaduan</a></li>
                 </ul>
 
                 <!-- Login / User Menu -->
