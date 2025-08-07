@@ -11,10 +11,22 @@ class Pengaduan extends Model
 
     protected $fillable = [
         'nama',
-        'asal_kecamatan',
-        'bendungan',
+        'kecamatan_id',
+        'bendungan_id',
         'no_hp',
         'pesan',
         'foto',
+        'status',
+        'respon',
     ];
+
+    public function kecamatan()
+    {
+        return $this->belongsTo(Kecamatan::class);
+    }
+
+    public function bendungan()
+    {
+        return $this->belongsTo(Bendungan::class);
+    }
 }

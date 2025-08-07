@@ -1,5 +1,5 @@
 @extends('admin.layout.base')
-{{-- @extends('layouts.app') --}}
+
 @section('content')
     <link rel="stylesheet" href="{{ asset('css/dashboardAdmin.css') }}">
 
@@ -91,7 +91,6 @@
                 </p>
             </div>
 
-
         </div>
     </div>
 
@@ -121,7 +120,6 @@
         <span id="statusIcon" class="status-icon me-2">{{ $statusIcon }}</span>
         <span id="statusText" class="status-text">{{ $statusText }}</span>
     </div>
-
 
 
     {{-- Grafik dan Tabel Riwayat (Side-by-side, Responsive) --}}

@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Sensor;
 use Carbon\Carbon;
+use App\Models\Kecamatan;
+use App\Models\Bendungan;
+use App\Models\Sensor;
 
 class MonitoringController extends Controller
 {
@@ -57,5 +59,38 @@ class MonitoringController extends Controller
         return $history->pluck('tanggal')->map(function ($tanggal) {
             return Carbon::parse($tanggal)->format('Y-m-d');
         })->toArray();
+    }
+
+    public function multiLokasi(Request $request)
+    {
+        $kecamatanList = Kecamatan::all();
+        $bendunganQuery = Bendungan::with('kecamatan', 'sensorTerbaru');
+
+        if ($request->filled('bendungan_id')) {
+            $bendunganQuery->whereIn('id', $request->bendungan_id);
+        }
+
+        $bendunganData = $bendunganQuery->get();
+
+        return view('admin.monitoring.multi', compact('bendunganData', 'kecamatanList'));
+    }
+
+    public function fetchBendungan($id)
+    {
+        $bendungan = Bendungan::where('kecamatan_id', $id)->get(['id', 'nama']);
+        return response()->json($bendungan);
+    }
+    public function getChartDetail($id)
+    {
+        $sensor = Sensor::where('bendungan_id', $id)
+            ->orderBy('tanggal', 'desc')
+            ->take(10)
+            ->get()
+            ->reverse();
+
+        return response()->json([
+            'labels' => $sensor->pluck('tanggal')->map(fn($tgl) => \Carbon\Carbon::parse($tgl)->format('d M H:i')),
+            'ketinggian' => $sensor->pluck('ketinggian_air'),
+        ]);
     }
 }

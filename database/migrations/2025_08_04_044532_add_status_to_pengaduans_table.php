@@ -12,18 +12,15 @@ return new class extends Migration
     public function up()
     {
         Schema::table('pengaduans', function (Blueprint $table) {
-            if (!Schema::hasColumn('pengaduans', 'foto')) {
-                $table->string('foto')->nullable()->after('pesan');
-            }
+            $table->string('status')->default('Belum Ditanggapi')->after('pesan');
+            $table->text('respon')->nullable()->after('status');
         });
     }
 
     public function down()
     {
         Schema::table('pengaduans', function (Blueprint $table) {
-            if (Schema::hasColumn('pengaduans', 'foto')) {
-                $table->dropColumn('foto');
-            }
+            $table->dropColumn(['status', 'respon']);
         });
     }
 };

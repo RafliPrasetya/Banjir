@@ -9,21 +9,21 @@ return new class extends Migration
     /**
      * Run the migrations.
      */
-    public function up()
+    public function up(): void
     {
         Schema::table('pengaduans', function (Blueprint $table) {
-            if (!Schema::hasColumn('pengaduans', 'foto')) {
-                $table->string('foto')->nullable()->after('pesan');
-            }
+            $table->foreignId('kecamatan_id')->nullable()->constrained()->onDelete('cascade');
+            $table->foreignId('bendungan_id')->nullable()->constrained()->onDelete('cascade');
         });
     }
 
-    public function down()
+    /**
+     * Reverse the migrations.
+     */
+    public function down(): void
     {
         Schema::table('pengaduans', function (Blueprint $table) {
-            if (Schema::hasColumn('pengaduans', 'foto')) {
-                $table->dropColumn('foto');
-            }
+            //
         });
     }
 };
